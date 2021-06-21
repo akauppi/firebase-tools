@@ -1,7 +1,3 @@
-- Add Warsaw (europe-central2) Cloud Function Location to Firebase Extension template.
-- Add Singapore (asia-southeast1) as a valid Firebase Realtime Database location.
-- Fixes `firebase init database` failure when no project is selected (#2981)
-- Fix issue where `firebase init database` overwrites entire `firebase.json` (#3299)
-- Fixes import/export bug with Storage emulator download tokens (#3414)
-- Improves errors when failing to start Storage emulator (#3443)
-- Fixes missing download tokens in Storage Emulator (#3451)
+- Avoid emulator data loss when there an error during export (#3504)
+- Ask before overwriting `storage.rules` during `firebase init` (#1833)
+- Release Cloud Firestore Emulator v1.13.0.
