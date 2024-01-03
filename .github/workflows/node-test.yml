@@ -62,7 +62,7 @@ jobs:
 
     env:
       FIREBASE_CLI_PREVIEWS: none
-      FIREBASE_EMULATORS_PATH: ${{ github.workspace }}/emulator-cache
+      #FIREBASE_EMULATORS_PATH: ${{ github.workspace }}/emulator-cache
       COMMIT_SHA: ${{ github.sha }}
       CI_JOB_ID: ${{ github.action }}
       FBTOOLS_TARGET_PROJECT: ${{ secrets.FBTOOLS_TARGET_PROJECT }}
@@ -76,15 +76,15 @@ jobs:
         node-version:
           - "16"
         script:
-          - npm run test:hosting
+          #- npm run test:hosting
           # - npm run test:hosting-rewrites # Long-running test that might conflict across test runs. Run this manually.
           - npm run test:client-integration
-          - npm run test:emulator
+          #- npm run test:emulator
           - npm run test:import-export
-          - npm run test:extensions-emulator
-          - npm run test:triggers-end-to-end
+          #- npm run test:extensions-emulator
+          #- npm run test:triggers-end-to-end
           - npm run test:storage-deploy
-          - npm run test:storage-emulator-integration
+          #- npm run test:storage-emulator-integration
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3

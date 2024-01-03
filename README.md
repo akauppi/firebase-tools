@@ -72,18 +72,11 @@ Append `--no-localhost` to login (i.e., `firebase login --no-localhost`) to copy
 | **projects:create**      | Create a new Firebase project.                             |
 | **projects:list**        | Print a list of all of your Firebase projects.             |
 
-### Deployment and Local Emulation
-
-These commands let you deploy and interact with your Firebase services.
+### Deployment
 
 | Command                       | Description                                                                                                                   |
 | ----------------------------- | ----------------------------------------------------------------------------------------------------------------------------- |
-| **emulators:exec**            | Start the local Firebase emulators, run a test script, then shut down the emulators.                                          |
-| **emulators:start**           | Start the local Firebase emulators.                                                                                           |
 | **deploy**                    | Deploys your Firebase project. Relies on `firebase.json` configuration and your local project folder.                         |
-| **serve**                     | Start a local server with your Firebase Hosting configuration and HTTPS-triggered Cloud Functions. Relies on `firebase.json`. |
-| **setup:emulators:database**  | Downloads the database emulator.                                                                                              |
-| **setup:emulators:firestore** | Downloads the firestore emulator.                                                                                             |
 
 ### App Distribution Commands
 
@@ -150,7 +143,6 @@ Detailed doc is [here](https://firebase.google.com/docs/cli/auth).
 | **functions:secrets:prune**   | Destroys unused secrets.                                                                                     |
 | **functions:secrets:destroy** | Destroy a secret. Defaults to destroying the latest version.                                                 |
 | **functions:delete**          | Delete one or more Cloud Functions by name or group name.                                                    |
-| **functions:shell**           | Locally emulate functions and start Node.js shell where these local functions can be invoked with test data. |
 
 ### Hosting Commands
 
@@ -199,19 +191,6 @@ To set the account for a specific command invocation, use the `--account` flag
 with any command. For example `firebase --account=user@domain.com deploy`. The
 specified account must have already been added to the Firebase CLI using
 `firebase login:add`.
-
-### Cloud Functions Emulator
-
-The Cloud Functions emulator is exposed through commands like `emulators:start`,
-`serve` and `functions:shell`. Emulated Cloud Functions run as independent `node` processes
-on your development machine which means they have their own credential discovery mechanism.
-
-By default these `node` processes are not able to discover credentials from `firebase login`.
-In order to provide a better development experience, when you are logged in to the CLI
-through `firebase login` we take the user credentials and construct a temporary credential
-that we pass into the emulator through `GOOGLE_APPLICATION_CREDENTIALS`. We **only** do this
-if you have not already set the `GOOGLE_APPLICATION_CREDENTIALS` environment variable
-yourself.
 
 ## Using behind a proxy
 

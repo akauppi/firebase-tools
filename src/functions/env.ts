@@ -6,7 +6,7 @@ import { FirebaseError } from "../error";
 import { logger } from "../logger";
 import { logBullet } from "../utils";
 
-const FUNCTIONS_EMULATOR_DOTENV = ".env.local";
+//const FUNCTIONS_EMULATOR_DOTENV = ".env.local";
 
 const RESERVED_PREFIXES = ["X_GOOGLE_", "FIREBASE_", "EXT_"];
 const RESERVED_KEYS = [
@@ -216,16 +216,16 @@ function findEnvfiles(
   functionsSource: string,
   projectId: string,
   projectAlias?: string,
-  isEmulator?: boolean
+  //isEmulator?: boolean
 ): string[] {
   const files: string[] = [".env"];
   files.push(`.env.${projectId}`);
   if (projectAlias) {
     files.push(`.env.${projectAlias}`);
   }
-  if (isEmulator) {
+  /***if (isEmulator) {
     files.push(FUNCTIONS_EMULATOR_DOTENV);
-  }
+  }**/
 
   return files
     .map((f) => path.join(functionsSource, f))
@@ -237,7 +237,7 @@ export interface UserEnvsOpts {
   functionsSource: string;
   projectId: string;
   projectAlias?: string;
-  isEmulator?: boolean;
+  //isEmulator?: boolean;
 }
 
 /**
@@ -249,9 +249,9 @@ export function hasUserEnvs({
   functionsSource,
   projectId,
   projectAlias,
-  isEmulator,
+  //isEmulator,
 }: UserEnvsOpts): boolean {
-  return findEnvfiles(functionsSource, projectId, projectAlias, isEmulator).length > 0;
+  return findEnvfiles(functionsSource, projectId, projectAlias /*, isEmulator*/).length > 0;
 }
 
 /**
@@ -265,6 +265,7 @@ export function writeUserEnvs(toWrite: Record<string, string>, envOpts: UserEnvs
     return;
   }
 
+<<<<<<< Updated upstream
   const { functionsSource, projectId, projectAlias, isEmulator } = envOpts;
   const envFiles = findEnvfiles(functionsSource, projectId, projectAlias, isEmulator);
   const projectScopedFileName = `.env.${projectId}`;
@@ -272,6 +273,12 @@ export function writeUserEnvs(toWrite: Record<string, string>, envOpts: UserEnvs
   const projectScopedFileExists = envFiles.includes(projectScopedFileName);
   if (!projectScopedFileExists) {
     createEnvFile(envOpts);
+=======
+  const { functionsSource, projectId, projectAlias /*, isEmulator*/ } = envOpts;
+  let envFiles = findEnvfiles(functionsSource, projectId, projectAlias /*, isEmulator*/);
+  if (envFiles.length === 0) {
+    envFiles = [createEnvFile(envOpts)];
+>>>>>>> Stashed changes
   }
 
   const currentEnvs = loadUserEnvs(envOpts);
@@ -297,7 +304,13 @@ export function writeUserEnvs(toWrite: Record<string, string>, envOpts: UserEnvs
 }
 
 function createEnvFile(envOpts: UserEnvsOpts): string {
+<<<<<<< Updated upstream
   const fileToWrite = envOpts.isEmulator ? FUNCTIONS_EMULATOR_DOTENV : `.env.${envOpts.projectId}`;
+=======
+  const fileToWrite = /*envOpts.isEmulator
+    ? FUNCTIONS_EMULATOR_DOTENV
+    :*/ `.env.${envOpts.projectAlias || envOpts.projectId}`;
+>>>>>>> Stashed changes
   logger.debug(`Creating ${fileToWrite}...`);
 
   fs.writeFileSync(path.join(envOpts.functionsSource, fileToWrite), "", { flag: "wx" });
@@ -334,9 +347,9 @@ export function loadUserEnvs({
   functionsSource,
   projectId,
   projectAlias,
-  isEmulator,
+  //isEmulator,
 }: UserEnvsOpts): Record<string, string> {
-  const envFiles = findEnvfiles(functionsSource, projectId, projectAlias, isEmulator);
+  const envFiles = findEnvfiles(functionsSource, projectId, projectAlias /*, isEmulator*/);
   if (envFiles.length === 0) {
     return {};
   }

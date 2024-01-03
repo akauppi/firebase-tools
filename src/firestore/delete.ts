@@ -6,7 +6,7 @@ import * as firestore from "../gcp/firestore";
 import { FirebaseError } from "../error";
 import { logger } from "../logger";
 import * as utils from "../utils";
-import { firestoreOriginOrEmulator } from "../api";
+import { firestoreOrigin /*OrEmulator*/ } from "../api";
 
 // Datastore allowed numeric IDs where Firestore only allows strings. Numeric IDs are
 // exposed to Firestore as __idNUM__, so this is the lowest possible negative numeric
@@ -105,7 +105,7 @@ export class FirestoreDelete {
     this.apiClient = new apiv2.Client({
       auth: true,
       apiVersion: "v1",
-      urlPrefix: firestoreOriginOrEmulator,
+      urlPrefix: firestoreOrigin /*OrEmulator*/,
     });
   }
 

@@ -70,7 +70,7 @@ export const firedataOrigin = utils.envOverride(
   "FIREBASE_FIREDATA_URL",
   "https://mobilesdk-pa.googleapis.com"
 );
-export const firestoreOriginOrEmulator = utils.envOverride(
+/***export const firestoreOriginOrEmulator = utils.envOverride(   #emul
   Constants.FIRESTORE_EMULATOR_HOST,
   utils.envOverride("FIRESTORE_URL", "https://firestore.googleapis.com"),
   (val) => {
@@ -79,7 +79,7 @@ export const firestoreOriginOrEmulator = utils.envOverride(
     }
     return `http://${val}`;
   }
-);
+);***/
 export const firestoreOrigin = utils.envOverride(
   "FIRESTORE_URL",
   "https://firestore.googleapis.com"

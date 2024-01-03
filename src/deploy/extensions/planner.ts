@@ -137,7 +137,7 @@ export async function want(args: {
   aliases: string[];
   projectDir: string;
   extensions: Record<string, string>;
-  emulatorMode?: boolean;
+  //emulatorMode?: boolean;
 }): Promise<DeploymentInstanceSpec[]> {
   const instanceSpecs: DeploymentInstanceSpec[] = [];
   const errors: FirebaseError[] = [];
@@ -151,9 +151,9 @@ export async function want(args: {
         projectId: args.projectId,
         projectNumber: args.projectNumber,
         aliases: args.aliases,
-        checkLocal: args.emulatorMode,
+        //checkLocal: args.emulatorMode,
       });
-      const autoPopulatedParams = await getFirebaseProjectParams(args.projectId, args.emulatorMode);
+      const autoPopulatedParams = await getFirebaseProjectParams(args.projectId /*, args.emulatorMode*/);
       const subbedParams = substituteParams(params, autoPopulatedParams);
 
       // ALLOWED_EVENT_TYPES can be undefined (user input not provided) or empty string (no events selected).

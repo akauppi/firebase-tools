@@ -937,7 +937,7 @@ describe("extensionsHelper", () => {
       sandbox.restore();
     });
 
-    it("should not call prodution when using a demo- project in emulator mode", async () => {
+    /***it("should not call prodution when using a demo- project in emulator mode", async () => {
       const res = await extensionsHelper.getFirebaseProjectParams("demo-test", true);
 
       expect(res).to.deep.equal({
@@ -951,7 +951,7 @@ describe("extensionsHelper", () => {
       });
       expect(projectNumberStub).not.to.have.been.called;
       expect(getFirebaseConfigStub).not.to.have.been.called;
-    });
+    });**/
 
     it("should return real values for non 'demo-' projects", async () => {
       const res = await extensionsHelper.getFirebaseProjectParams("real-test", false);

@@ -9,7 +9,7 @@ module.exports = {
     "plugin:@typescript-eslint/recommended-requiring-type-checking",
     "plugin:jsdoc/recommended",
     "google",
-    "prettier",
+    //"prettier",   // disabled - creates error when run under Docker (line feed issue)
   ],
   rules: {
     "jsdoc/newline-after-description": "off",

@@ -109,18 +109,18 @@ export function getDBInstanceFromURL(databaseUrl = ""): string {
  */
 export async function getFirebaseProjectParams(
   projectId: string | undefined,
-  emulatorMode: boolean = false
+  //emulatorMode: boolean = false
 ): Promise<Record<string, string>> {
   if (!projectId) {
     return {};
   }
-  const body = emulatorMode
+  const body = /*emulatorMode
     ? await getProjectAdminSdkConfigOrCached(projectId)
-    : await getFirebaseConfig({ project: projectId });
+    :*/ await getFirebaseConfig({ project: projectId });
   const projectNumber =
-    emulatorMode && Constants.isDemoProject(projectId)
+    /*emulatorMode && Constants.isDemoProject(projectId)
       ? Constants.FAKE_PROJECT_NUMBER
-      : await getProjectNumber({ projectId });
+      :*/ await getProjectNumber({ projectId });
   const databaseURL = body?.databaseURL ?? `https://${projectId}.firebaseio.com`;
   const storageBucket = body?.storageBucket ?? `${projectId}.appspot.com`;
   // This env variable is needed for parameter-less initialization of firebase-admin

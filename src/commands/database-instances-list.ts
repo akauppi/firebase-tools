@@ -7,8 +7,8 @@ import { logger } from "../logger";
 import { requirePermissions } from "../requirePermissions";
 import { needProjectNumber } from "../projectUtils";
 import firedata = require("../gcp/firedata");
-import { Emulators } from "../emulator/types";
-import { warnEmulatorNotSupported } from "../emulator/commandUtils";
+//import { Emulators } from "../emulator/types";
+//import { warnEmulatorNotSupported } from "../emulator/commandUtils";
 import { previews } from "../previews";
 import { needProjectId } from "../projectUtils";
 import {
@@ -43,7 +43,7 @@ function logInstancesCount(count = 0): void {
 export let command = new Command("database:instances:list")
   .description("list realtime database instances, optionally filtered by a specified location")
   .before(requirePermissions, ["firebasedatabase.instances.list"])
-  .before(warnEmulatorNotSupported, Emulators.DATABASE)
+  //.before(warnEmulatorNotSupported, Emulators.DATABASE)
   .action(async (options: any) => {
     const location = parseDatabaseLocation(options.location, DatabaseLocation.ANY);
     const spinner = ora(

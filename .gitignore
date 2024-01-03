@@ -16,5 +16,5 @@ yarn.lock
 *.tgz
 scripts/*.json
 
-lib/
-dev/
+/lib/
+/dev/

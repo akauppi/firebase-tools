@@ -1,8 +1,8 @@
 import { Command } from "../command";
 import { logger } from "../logger";
 import { requirePermissions } from "../requirePermissions";
-import { warnEmulatorNotSupported } from "../emulator/commandUtils";
-import { Emulators } from "../emulator/types";
+//import { warnEmulatorNotSupported } from "../emulator/commandUtils";
+//import { Emulators } from "../emulator/types";
 import {
   createInstance,
   DatabaseInstanceType,
@@ -21,7 +21,7 @@ export const command = new Command("database:instances:create <instanceName>")
     "(optional) location for the database instance, defaults to us-central1"
   )
   .before(requirePermissions, ["firebasedatabase.instances.create"])
-  .before(warnEmulatorNotSupported, Emulators.DATABASE)
+  //.before(warnEmulatorNotSupported, Emulators.DATABASE)
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   .action(async (instanceName: string, options: any) => {
     const projectId = needProjectId(options);

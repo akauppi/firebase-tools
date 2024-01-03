@@ -5,7 +5,7 @@ import * as tmp from "tmp";
 import AbortController from "abort-controller";
 
 import { Client } from "./apiv2";
-import { realtimeOriginOrEmulatorOrCustomUrl } from "./database/api";
+import { /*realtimeOriginOrEmulatorOrCustomUrl*/ realtimeOriginOrCustomUrl } from "./database/api";
 import { logger } from "./logger";
 import { ProfileReport, ProfileReportOptions } from "./profileReport";
 import { responseToError } from "./responseToError";
@@ -19,7 +19,7 @@ tmp.setGracefulCleanup();
  */
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export async function profiler(options: any): Promise<unknown> {
-  const origin = realtimeOriginOrEmulatorOrCustomUrl(options.instanceDetails.databaseUrl);
+  const origin = /*realtimeOriginOrEmulatorOrCustomUrl*/ realtimeOriginOrCustomUrl(options.instanceDetails.databaseUrl);
   const url = new URL(utils.getDatabaseUrl(origin, options.instance, "/.settings/profile.json?"));
   const rl = readline.createInterface({ input: process.stdin });
 

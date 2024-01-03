@@ -3,11 +3,11 @@ import * as url from "url";
 
 import { Client } from "../apiv2";
 import { Command } from "../command";
-import { Emulators } from "../emulator/types";
+//import { Emulators } from "../emulator/types";
 import { FirebaseError } from "../error";
 import { populateInstanceDetails } from "../management/database";
-import { printNoticeIfEmulated } from "../emulator/commandUtils";
-import { realtimeOriginOrEmulatorOrCustomUrl } from "../database/api";
+//import { printNoticeIfEmulated } from "../emulator/commandUtils";
+import { /*realtimeOriginOrEmulatorOrCustomUrl*/ realtimeOriginOrCustomUrl } from "../database/api";
 import { requirePermissions } from "../requirePermissions";
 import { logger } from "../logger";
 import { requireDatabaseInstance } from "../requireDatabaseInstance";
@@ -68,14 +68,14 @@ export const command = new Command("database:get <path>")
   .before(requirePermissions, ["firebasedatabase.instances.get"])
   .before(requireDatabaseInstance)
   .before(populateInstanceDetails)
-  .before(printNoticeIfEmulated, Emulators.DATABASE)
+  //.before(printNoticeIfEmulated, Emulators.DATABASE)
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   .action(async (path: string, options: any) => {
     if (!path.startsWith("/")) {
       return utils.reject("Path must begin with /", { exit: 1 });
     }
 
-    const dbHost = realtimeOriginOrEmulatorOrCustomUrl(options.instanceDetails.databaseUrl);
+    const dbHost = /*realtimeOriginOrEmulatorOrCustomUrl*/ realtimeOriginOrCustomUrl(options.instanceDetails.databaseUrl);
     const dbUrl = utils.getDatabaseUrl(dbHost, options.instance, path + ".json");
     const query: { [key: string]: string } = {};
     if (options.shallow) {

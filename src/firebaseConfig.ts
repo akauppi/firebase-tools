@@ -120,7 +120,8 @@ export type RemoteConfigConfig = {
   template: string;
 } & Deployable;
 
-export type EmulatorsConfig = {
+/***
+export type EmulatorsConfig = {   // #emul
   auth?: {
     host?: string;
     port?: number;
@@ -168,6 +169,7 @@ export type EmulatorsConfig = {
     port?: number;
   };
 };
+***/
 
 export type ExtensionsConfig = Record<string, string>;
 
@@ -178,6 +180,6 @@ export type FirebaseConfig = {
   hosting?: HostingConfig;
   storage?: StorageConfig;
   remoteconfig?: RemoteConfigConfig;
-  emulators?: EmulatorsConfig;
+  // emulators?: EmulatorsConfig;   // #emul
   extensions?: ExtensionsConfig;
 };

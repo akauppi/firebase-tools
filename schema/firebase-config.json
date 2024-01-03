@@ -147,6 +147,7 @@
                 }
             ]
         },
+<<<<<<< Updated upstream
         "emulators": {
             "additionalProperties": false,
             "properties": {
@@ -296,6 +297,8 @@
             },
             "type": "object"
         },
+=======
+>>>>>>> Stashed changes
         "extensions": {
             "$ref": "#/definitions/ExtensionsConfig"
         },
